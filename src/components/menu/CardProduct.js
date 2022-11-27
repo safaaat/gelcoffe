@@ -22,7 +22,7 @@ function CardProduct({ products, addCart }) {
                     <li key={product.id} className="card-menu group relative z-[0] hover:z-[1] transition-all duration-300">
                         {/* Image */}
                         <div className="overflow-hidden rounded-lg 360:rounded-t-3xl">
-                            <img src={process.env.PUBLIC_URL + `assets/images/${product.category.nama.toLowerCase()}/${product.gambar}`} alt={product.nama} className="group-hover:scale-110 transition-all duration-300" />
+                            <img src={process.env.PUBLIC_URL + `/assets/images/${product.category.nama.toLowerCase()}/${product.gambar}`} alt={product.nama} className="group-hover:scale-110 transition-all duration-300" />
                         </div>
 
                         {/* Text Contain */}
