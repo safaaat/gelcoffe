@@ -331,6 +331,8 @@ export default class App extends Component {
                     <Route path="addressbook" element={<AddressBook onOffScrollBody={this.onOffScrollBody} loginAkunPelanggan={this.state.loginAkunPelanggan} />} />
                     <Route path="orderlist" element={<OrderList />} />
                   </Route>
+
+                  <Route path="gelcoffe" />
                 </Route>
 
                 {/* Cart */}
