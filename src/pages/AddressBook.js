@@ -5,7 +5,7 @@ import axios from "axios";
 import LoadingAddData from "../components/LoadingAddData";
 import { AiOutlineEllipsis, IoClose } from "../utils/icon"
 
-function AddressBook({ onOffScrollBody, loginAkunPelanggan }) {
+function AddressBook({ onOffScrollBody, loginAkunPelanggan, updateAddress }) {
     // Nampung Data Login
     let data = loginAkunPelanggan[0];
     // State Data Value Form
@@ -76,8 +76,10 @@ function AddressBook({ onOffScrollBody, loginAkunPelanggan }) {
                 let data = ress.data
                 setValueApiAddress(data);
                 loopAddress(data);
+                // State Di App.js Update Data Address
+                updateAddress(data);
             })
-    }, [loopAddress])
+    }, [loopAddress, updateAddress])
 
     useEffect(() => {
         updateValueAddress(data);

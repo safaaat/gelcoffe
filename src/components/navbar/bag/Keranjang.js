@@ -20,7 +20,7 @@ function Keranjang({ keranjangs, clearProductBag }) {
                 <div className="absolute hidden left-0 top-[2.3rem] w-[2.7rem] h-[2.3rem] group-hover:inline-block"></div>
 
                 {/* Bag Shopping */}
-                <div className="absolute mt-2 bg-white overflow-hidden w-[0rem] h-auto -right-[400%]  rounded-3xl text-gray-500  opacity-0  group-hover:opacity-100 group-hover:w-[30rem]">
+                <div className="absolute mt-2 bg-white overflow-hidden w-[0rem] h-auto -right-[400%]  rounded-3xl text-gray-500  opacity-0  group-hover:opacity-100 group-hover:w-[30rem] z-[50]">
                     <div className="grid grid-cols-2 w-[90%] mx-auto py-3 pl-4 capitalize text-color-primary">
                         <p className="relative before:absolute before:w-[4.5rem] before:h-[3px] before:bg-color-primary before:-bottom-[.8rem]">shopping</p>
 

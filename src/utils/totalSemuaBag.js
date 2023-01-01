@@ -40,9 +40,23 @@ const tipeInput = (value, judul) => {
     if (judul === "Catatan Kurir (opsional)") return { catatanKurir: value }
 }
 
+// Function Max Send Address
+const updateSendAddress = (address, number) => {
+    let data = address
+    if (data.length > number) {
+        data = [...data];
+        data = data.slice(0, number);
+        data = data.join("");
+        data = `${data}...`;
+        return data;
+    }
+    return data;
+}
+
 export {
     totalSemuaBag,
     totalHargaBag,
     inputNumber,
-    tipeInput
+    tipeInput,
+    updateSendAddress
 }

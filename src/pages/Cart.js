@@ -1,15 +1,19 @@
-import React from "react";
+import { React, useEffect } from "react";
 import { EmptyBag } from "../components/navbar/index";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import ListProduct from "../components/cart/ListProduct";
 
-function Cart({ keranjangs, linkProduct, clearProductBag, putAddMinProduct }) {
+function Cart({ keranjangs, linkProduct, clearProductBag, putAddMinProduct, dataAddress, loginAkunPelanggan, getOnAddress, updateAuthPrevRout, updateCheckOut, OnOffFooter, updateOnOffNavbar, onOffNavbar }) {
+    // Footer Off
+    useEffect(() => {
+        OnOffFooter("on");
+    }, [OnOffFooter])
+
     return (
         <div>
-            <div className="bg-green"></div>
-
+            <div className={onOffNavbar === "on" ? "bg-green" : ""}></div>
             {keranjangs.length > 0
-                ? <ListProduct keranjangs={keranjangs} clearProductBag={clearProductBag} putAddMinProduct={putAddMinProduct} />
+                ? <ListProduct keranjangs={keranjangs} clearProductBag={clearProductBag} putAddMinProduct={putAddMinProduct} dataAddress={dataAddress} loginAkunPelanggan={loginAkunPelanggan} getOnAddress={getOnAddress} updateAuthPrevRout={updateAuthPrevRout} updateCheckOut={updateCheckOut} OnOffFooter={OnOffFooter} updateOnOffNavbar={updateOnOffNavbar} />
 
                 : <div className="2xl:w-[84.3rem] mx-auto">
                     <div className="w-[90%] mx-auto">
@@ -18,7 +22,7 @@ function Cart({ keranjangs, linkProduct, clearProductBag, putAddMinProduct }) {
                         <div className="mt-4 mb-[4rem]">
                             <EmptyBag />
                             <div className="flex justify-center">
-                                <Link to={"/menu"} className="bg-color-primary text-white py-3 px-[3rem] rounded-[.7rem] hover:bg-color-hover-btn duration-300 transition-all" onClick={() => linkProduct("products")}>
+                                <Link to={"/category"} className="bg-color-primary text-white py-3 px-[3rem] rounded-[.7rem] hover:bg-color-hover-btn duration-300 transition-all" onClick={() => linkProduct("products")}>
                                     <button className="capitalize">start shopping</button>
                                 </Link>
                             </div>
@@ -26,7 +30,6 @@ function Cart({ keranjangs, linkProduct, clearProductBag, putAddMinProduct }) {
                     </div>
                 </div>
             }
-
         </div>
     )
 }

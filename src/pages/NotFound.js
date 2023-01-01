@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom"
 
-function NotFound() {
+function NotFound({ bgGreen }) {
     return (
         <div>
-            <div className="bg-[#063f06] w-full h-[6.5rem] md:h-[8rem] lg:h-[9rem]"></div>
+            {!bgGreen ? "" : <div className="bg-green"></div>}
 
-            <div className="flex justify-center items-center py-[2.2rem] sm:py-[4.5rem]">
+            <div className="flex justify-center items-center py-[2.2rem] sm:py-[4.5rem] w-[90%] mx-auto">
                 <div className="grid justify-items-center text-center">
                     <img src={process.env.PUBLIC_URL + "/assets/images/loading/img-notfound.png"} alt="img-NotFound" />
                     <h3 className="capitalize font-bold text-xl">page not found</h3>

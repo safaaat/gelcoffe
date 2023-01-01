@@ -1,7 +1,15 @@
-import React from "react";
+import { React, useCallback, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
-function UserAccount() {
+function UserAccount({ updateOnOffNavbar }) {
+    const changeOnOffNavbar = useCallback(() => {
+        return updateOnOffNavbar("on");
+    }, [updateOnOffNavbar]);
+
+    useEffect(() => {
+        changeOnOffNavbar();
+    }, [changeOnOffNavbar]);
+
     return (
         <>
             <div className="w-full 2xl:w-[84.3rem] mx-auto">

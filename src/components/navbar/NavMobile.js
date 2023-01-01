@@ -31,7 +31,7 @@ export const NavMobile = ({ keranjangs, loginAkunPelanggan, showFromRegister }) 
                     <p className="text_nav-mobile">home page</p>
                 </NavLink>
                 <NavLink
-                    to='category'
+                    to="category"
                     className={({ isActive }) => (isActive
                         ? "nav-mobile-aktif text-[1.6rem]"
                         : "nav-mobile text-[1.6rem]")
@@ -41,7 +41,7 @@ export const NavMobile = ({ keranjangs, loginAkunPelanggan, showFromRegister }) 
                     <p className="text_nav-mobile">Category</p>
                 </NavLink>
                 <NavLink
-                    to='cart'
+                    to="cart"
                     className={({ isActive }) => (isActive
                         ? "nav-mobile-aktif text-[1.6rem]"
                         : "nav-mobile text-[1.6rem]")

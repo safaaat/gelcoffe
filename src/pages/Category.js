@@ -1,14 +1,14 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useCallback } from "react";
 import { GiFoodTruck, BiDrink, MdFastfood, DiCoffeescript, FaCheese } from "../utils/icon";
 import { Outlet } from "react-router-dom";
 import { BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill } from "../utils/icon";
 
 const Icon = ({ value }) => {
-    if (value === "Semua") return <GiFoodTruck className="text-[1.9rem] text-lime-500" />
-    if (value === "Coffe") return <DiCoffeescript className="text-[1.8rem] text-[#cf9831]" />
-    if (value === "Juice") return <BiDrink className="text-[1.6rem] text-fuchsia-600" />
-    if (value === "Cemilan") return <FaCheese className="text-[1.5rem] text-red-600" />
-    if (value === "Makanan") return <MdFastfood className="text-[1.5rem] text-blue-600" />
+    if (value === "Semua") return <GiFoodTruck className="text-[1.3rem] 360:text-[1.9rem] text-lime-500" />
+    if (value === "Coffe") return <DiCoffeescript className="text-[1.5rem] 360:text-[1.8rem] text-[#cf9831]" />
+    if (value === "Juice") return <BiDrink className="text-[1.2rem] 360:text-[1.6rem] text-fuchsia-600" />
+    if (value === "Cemilan") return <FaCheese className="text-[1.2rem] 360:text-[1.5rem] text-red-600" />
+    if (value === "Makanan") return <MdFastfood className="text-[1.3rem] 360:text-[1.5rem] text-blue-600" />
 }
 
 const TextIcon = ({ value }) => {
@@ -24,25 +24,19 @@ const CategoryIcon = ({ value }) => {
     if (value === "off") return <BsFillArrowRightSquareFill />
 }
 
-function Category({ categorys, linkProduct, heightCategory, widthCategory }) {
+function Category({ categorys, linkProduct, heightCategory, updateOnOffNavbar }) {
     // State Scroll
     const [scrolled, setScrolled] = useState(false);
     const [onOffCategory, setOnOffCategory] = useState("show");
     const [posisiScroll, setPosisiScroll] = useState("parent-category top_awal");
-    const [kurang, setKurang] = useState(0);
-
-    // const updateScroll = useCallback((value) => {
-    //     if (value > heightCategory - kurang) return setPosisiScroll("parent-category bottom-0");
-    //     return setPosisiScroll("parent-category top_awal");
-    // }, [heightCategory, kurang])
 
     useEffect(() => {
         // Function Scroll Untuk Aktif Background green NavBar
         const onScroll = () => {
             // let mob_view = window.matchMedia("(max-width: 768px)");
-            if (window.scrollY > 15 && window.scrollY < heightCategory - kurang) {
+            if (window.scrollY > 15 && window.scrollY < heightCategory - 278) {
                 setScrolled(true);
-            } else if (window.scrollY >= heightCategory - kurang) {
+            } else if (window.scrollY >= heightCategory - 278) {
                 setScrolled(false);
                 return setPosisiScroll("parent-category bottom-category");
             } else {
@@ -52,7 +46,7 @@ function Category({ categorys, linkProduct, heightCategory, widthCategory }) {
         }
         window.addEventListener("scroll", onScroll);
         return () => window.removeEventListener("scroll", onScroll);
-    }, [heightCategory, kurang]);
+    }, [heightCategory]);
 
     const showOffCategory = () => {
         if (onOffCategory === "show") {
@@ -102,19 +96,13 @@ function Category({ categorys, linkProduct, heightCategory, widthCategory }) {
         }
     }
 
-    const updateKurang = (value) => {
-        if (value <= 288) return setKurang(200);
-        if (value <= 324) return setKurang(250);
-        if (value <= 338) return setKurang(270);
-        if (value <= 373) return setKurang(270);
-        if (value <= 435 && value >= 691) return setKurang(285);
-        if (value <= 910) return setKurang(290);
-        if (value <= 991) return setKurang(285);
-    }
+    const changeOnOffNavbar = useCallback(() => {
+        return updateOnOffNavbar("on");
+    }, [updateOnOffNavbar]);
 
     useEffect(() => {
-        updateKurang(widthCategory)
-    }, [widthCategory])
+        changeOnOffNavbar();
+    }, [changeOnOffNavbar]);
 
     return (
         < div className="w-full 2xl:w-[84.4rem] mx-auto relative overflow-hidden" >
@@ -128,9 +116,11 @@ function Category({ categorys, linkProduct, heightCategory, widthCategory }) {
 
                     <ul className={onOffCategory === "show" ? "ul_category-aktif" : "ul_category"}>
                         {categorys.map((data) => (
-                            <li key={data.id} className="grid justify-items-center px-[1rem] py-2 rounded-xl cursor-pointer group" onClick={() => nampungProduck(data)}>
+                            <li key={data.id} className="grid justify-items-center px-[.5rem] 360:px-[1rem] rounded-xl cursor-pointer group" onClick={() => nampungProduck(data)}>
                                 <Icon value={data.nama} />
-                                <TextIcon value={data.nama} />
+                                <div className="text-sm 360:text-base">
+                                    <TextIcon value={data.nama} />
+                                </div>
                             </li>
                         ))}
                     </ul>

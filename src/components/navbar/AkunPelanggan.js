@@ -45,7 +45,7 @@ function AkunPelanggan({ loginAkunPelanggan, loginAkun, clearBgBlack }) {
                 </div>
 
                 {/* Profile Hidden */}
-                <div className={navClick ? "hidden" : "hidden group-hover:inline absolute w-[9.2rem] h-[1rem] right-0"}>
+                <div className={navClick ? "hidden" : "hidden group-hover:inline absolute w-[9.2rem] z-[1000] h-[1rem] right-0"}>
                     <div className="card-profile px-[1.5rem] pb-[1rem] absolute">
                         {/* Card Profile */}
                         <Link to={"account"} className="parent_profile" onClick={() => navUrlClick(true)}>
@@ -66,7 +66,7 @@ function AkunPelanggan({ loginAkunPelanggan, loginAkun, clearBgBlack }) {
                                 <FaAddressBook />
                                 Address Book
                             </Link>
-                            <Link to={"account/orderlist"} className="text_list-data" onClick={() => navUrlClick(true)}>
+                            <Link to={"account/orderlist/confirmasi"} className="text_list-data" onClick={() => navUrlClick(true)}>
                                 <AiFillShopping />
                                 Order List
                             </Link>

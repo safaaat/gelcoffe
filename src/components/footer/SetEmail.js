@@ -5,7 +5,7 @@ function SetEmail() {
     return (
         <div>
             <h3 className="footer_judul">STAY IN TOUCH</h3>
-            <div className="bg-red-300 mt-[2rem] relative">
+            <div className="bg-red-300 mt-[1rem] 500:mt-[2rem] relative">
                 {/* Icon Arrow */}
                 <div className="absolute top-[23%] right-[2.5rem] cursor-pointer text-[1.5rem] text-color-primary hover:text-color-hover transition-all duration-500 hover:translate-x-2">
                     <ImArrowRight />
