@@ -15,7 +15,9 @@ function InputNav() {
     setActive(true);
     setTimeout(() => {
       setActive(false);
+      setInput("");
     }, 1);
+    
   };
 
   return (
