@@ -17,7 +17,6 @@ function InputNav() {
       setActive(false);
       setInput("");
     }, 1);
-    
   };
 
   return (

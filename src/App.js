@@ -1,28 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import {
-  Home,
-  Menu,
-  NotFound,
-  Cart,
-  Category,
-  PersonalData,
-  AddressBook,
-  OrderList,
-  UserAccount,
-  CheckOut,
-  Confirmasi,
-  Completed,
-  Cancel,
-  OrderStatus,
-  Search,
-} from "./pages/Index";
-import {
-  Footer,
-  RegisterAndLogin,
-  ScrollToTop,
-  Navbar,
-} from "./components/Index";
+import { Home, Menu, NotFound, Cart, Category, PersonalData, AddressBook, OrderList, UserAccount, CheckOut, Confirmasi, Completed, Cancel, OrderStatus, Search, } from "./pages/Index";
+import { Footer, RegisterAndLogin, ScrollToTop, Navbar } from "./components/Index";
 import axios from "axios";
 import { Api_Url } from "./utils/constants";
 import PrivateRoutes from "./utils/PrivateRoutes";

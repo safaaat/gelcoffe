@@ -49,26 +49,26 @@ const Search = ({ addCart, updateHaightCategory }) => {
     getApiProduct();
   }, []);
 
-  const filterByNama = useCallback((value)=>{
+  const filterByNama = useCallback((value) => {
     let data = product.filter(product => product.nama.includes(value));
     setDataSearch(data);
-  },[product])
+  }, [product])
 
-  const filterByCategory = useCallback((value)=>{
+  const filterByCategory = useCallback((value) => {
     let data = product.filter(product => product.category.nama.toLowerCase().includes(value));
     setDataSearch(data);
-  },[product])
+  }, [product])
 
   const updateFormInput = useCallback((value) => {
-    if(value === "coffe" || value === "kopi") return filterByCategory("coffe");
-    if(value === "snack" || value === "cemilan") return filterByCategory("cemilan");
-    if(value === "food" || value === "makanan") return filterByCategory("makanan");
-    if(value === "minuman") return filterByCategory("juice");
+    if (value === "coffe" || value === "kopi") return filterByCategory("coffe");
+    if (value === "snack" || value === "cemilan") return filterByCategory("cemilan");
+    if (value === "food" || value === "makanan") return filterByCategory("makanan");
+    if (value === "minuman") return filterByCategory("juice");
     return filterByNama(value);
-  }, [filterByNama,filterByCategory]);
+  }, [filterByNama, filterByCategory]);
 
   useEffect(() => {
-    updateFormInput(input);
+    updateFormInput(input.toLowerCase());
   }, [updateFormInput, input]);
 
   return (
