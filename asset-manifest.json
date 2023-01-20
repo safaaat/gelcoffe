@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/gelcoffe/static/css/main.21b9aff1.css",
-    "main.js": "/gelcoffe/static/js/main.47107c7f.js",
+    "main.css": "/gelcoffe/static/css/main.8c46591e.css",
+    "main.js": "/gelcoffe/static/js/main.75f57296.js",
     "static/js/787.6b971e44.chunk.js": "/gelcoffe/static/js/787.6b971e44.chunk.js",
     "index.html": "/gelcoffe/index.html",
     "static/media/index.cjs": "/gelcoffe/static/media/index.cd351d7c31d0d3fccf96.cjs",
-    "main.21b9aff1.css.map": "/gelcoffe/static/css/main.21b9aff1.css.map",
-    "main.47107c7f.js.map": "/gelcoffe/static/js/main.47107c7f.js.map",
+    "main.8c46591e.css.map": "/gelcoffe/static/css/main.8c46591e.css.map",
+    "main.75f57296.js.map": "/gelcoffe/static/js/main.75f57296.js.map",
     "787.6b971e44.chunk.js.map": "/gelcoffe/static/js/787.6b971e44.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.21b9aff1.css",
-    "static/js/main.47107c7f.js"
+    "static/css/main.8c46591e.css",
+    "static/js/main.75f57296.js"
   ]
 }
