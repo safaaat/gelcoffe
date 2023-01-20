@@ -78,7 +78,7 @@
   @apply bg-color-primary/10 text-color-primary w-full 768:w-auto py-1 px-3 360:px-5 text-[.8rem] 360:text-sm 640:text-base rounded-md capitalize hover:text-color-hover-btn transition-all duration-300;
 }
 .dimensi-border {
-  @apply w-[90%] mx-auto px-[.5rem] sm:px-[2rem] py-[2rem] text-gray-500 border-x-[1px] border-b-[1px] rounded-b-xl border-color-gray/50 mb-[2rem];
+  @apply w-[90%] mx-auto px-[.5rem] sm:px-[2rem] py-[2rem] text-gray-500 border-x-[1px] border-b-[1px] rounded-b-xl border-color-gray/50 mb-[4.5rem] lg:mb-[2rem];
 }
 .bg-green {
   @apply bg-[#063f06] w-full h-[5.5rem] md:h-[7.3rem] lg:h-[7.6rem];

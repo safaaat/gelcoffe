@@ -1,12 +1,19 @@
+import axios from "axios";
 import { useEffect } from "react";
 import { useCallback } from "react";
 import { React, useState } from "react";
+import { Api_Url } from "../../utils/constants";
 import { IoClose } from "../../utils/icon";
 // import { Input } from "./index";
 import InputForm from "./InputForm";
 
-const FromAddress = ({ activeFrom, dataAddress, updateDataAddress, loginAkunPelanggan, putOnAddress }) => {
+const FromAddress = ({ activeFrom, dataAddress, updateDataAddress, loginAkunPelanggan, putOnAddress, changeAddress, getOnAddress }) => {
     const [activeSubmit, setActiveSubmit] = useState(false)
+
+    const handleSaveOrEdit = (value) => {
+        if (value === false) return handleOnAddress
+        return handleChangeAddress
+    }
 
     const handleOnAddress = (event) => {
         event.preventDefault()
@@ -29,6 +36,41 @@ const FromAddress = ({ activeFrom, dataAddress, updateDataAddress, loginAkunPela
         updateActiveSubmit(dataAddress);
     }, [dataAddress, updateActiveSubmit])
 
+    // Function Put Change Address
+    const putChangeAddress = (data, id) => {
+        // Active Loading
+        activeFrom({ loading: true });
+        axios.put(`${Api_Url}alamat/${id}`, data)
+            .then(() => {
+                // Memanggil Data Address
+                getOnAddress(loginAkunPelanggan);
+                // Off Loading
+                activeFrom({ loading: false });
+                // Close Form Address
+                activeFrom({ form: false })
+            }).catch((err) => {
+                // Off Loading
+                activeFrom({ loading: false });
+                // Close Form Address
+                activeFrom({ form: false })
+                console.log(err)
+            })
+    }
+
+    const handleChangeAddress = (event) => {
+        event.preventDefault()
+
+        // Nampung Nilai Value Address Yang Ingin Di Edit
+        let data = dataAddress
+        let id = dataAddress.id
+
+        // Delete Objek Id
+        delete data.id
+
+        // Function Put Change Address
+        if (activeSubmit === true) return putChangeAddress(data, id);
+    }
+
     return (
         <>
             <div className="relative">
@@ -44,7 +86,7 @@ const FromAddress = ({ activeFrom, dataAddress, updateDataAddress, loginAkunPela
                         </div>
 
                         {/* From Input Address */}
-                        <form onSubmit={handleOnAddress}>
+                        <form onSubmit={handleSaveOrEdit(changeAddress.buttonActive)}>
                             <div className="px-[5%] text-lgcapitalize font-semibold pt-[1.9rem] overflow-auto h-[26rem]">
                                 {/* Judul */}
                                 <h3>Complete address details</h3>
@@ -58,10 +100,21 @@ const FromAddress = ({ activeFrom, dataAddress, updateDataAddress, loginAkunPela
                                     <InputForm data={{ judul: "Complete Address", code: 6 }} updateDataAddress={updateDataAddress} maxJumlah={200} valueInput={dataAddress.alamatLengkap} inputLength={Number(dataAddress.alamatLengkap.length)} />
                                     <InputForm data={{ judul: "Courier Note (optional)", code: 7 }} updateDataAddress={updateDataAddress} maxJumlah={50} valueInput={dataAddress.catatanKurir} inputLength={Number(dataAddress.catatanKurir.length)} />
                                 </div>
-                                {/* Button Submit */}
-                                <div className="w-full text-center mt-[3rem] mb-[1rem]">
-                                    <button className={!activeSubmit ? "btn_submit-address" : "btn_submit-address-aktif"} onSubmit={handleOnAddress}>Save</button>
-                                </div>
+
+                                {changeAddress.buttonActive === false
+                                    ? (
+                                        // Button Submit Save
+                                        <div className="w-full text-center mt-[3rem] mb-[1rem]">
+                                            <button className={!activeSubmit ? "btn_submit-address" : "btn_submit-address-aktif"} onSubmit={handleOnAddress}>Save</button>
+                                        </div>
+                                    )
+                                    : (
+                                        // Button Submit Edit
+                                        <div className="w-full text-center mt-[3rem] mb-[1rem]">
+                                            <button className={!activeSubmit ? "btn_submit-address" : "btn_submit-address-aktif"} onSubmit={handleChangeAddress}>Edit</button>
+                                        </div>
+                                    )
+                                }
                             </div>
                         </form>
                     </div>

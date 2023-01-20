@@ -280,7 +280,6 @@ export default class App extends Component {
 
   // Function On Off BackGround Scroll Body
   onOffScrollBody = event => {
-    console.log(event);
     this.setState({
       offScrollBody: event,
     });
@@ -505,7 +504,10 @@ export default class App extends Component {
                   <Route
                     path="account"
                     element={
-                      <UserAccount updateOnOffNavbar={this.updateOnOffNavbar} />
+                      <UserAccount
+                        updateOnOffNavbar={this.updateOnOffNavbar}
+                        loginAkun={this.loginAkun}
+                      />
                     }
                   >
                     <Route
@@ -526,6 +528,7 @@ export default class App extends Component {
                           onOffScrollBody={this.onOffScrollBody}
                           loginAkunPelanggan={this.state.loginAkunPelanggan}
                           updateAddress={this.updateAddress}
+                          getOnAddressApp={this.getOnAddress}
                         />
                       }
                     />

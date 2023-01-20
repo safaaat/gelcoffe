@@ -16,6 +16,8 @@ function AddressBook({ onOffScrollBody, loginAkunPelanggan, updateAddress }) {
     const [valueApiAddress, setValueApiAddress] = useState([]);
     // State Alamat Utama
     const [addressUtama, setAddressUtama] = useState()
+    // Change Address
+    const [changeAddress, setChangeAddress] = useState({ id: null, buttonActive: false })
 
     const activeFrom = (value) => {
         // State Active From
@@ -24,6 +26,8 @@ function AddressBook({ onOffScrollBody, loginAkunPelanggan, updateAddress }) {
         })
         // Function Scroll Body
         onOffScrollBody(value.form)
+        // Ketika Close Form, ubah Button Form Menjadi Save
+        setChangeAddress({ id: null, buttonActive: false })
         // Ketika Close Form, Kembalikan Value Sesuai Default
         if (value.form === false) return updateValueAddress(data);
     }
@@ -129,6 +133,7 @@ function AddressBook({ onOffScrollBody, loginAkunPelanggan, updateAddress }) {
                 acitveBtnMobile({ btnMobile: false })
             })
     }
+
     const acitveBtnMobile = (value) => {
         setActive((ress) => {
             return { ...ress, ...value }
@@ -137,12 +142,31 @@ function AddressBook({ onOffScrollBody, loginAkunPelanggan, updateAddress }) {
         return onOffScrollBody(true);
     }
 
+    // Active Form Change Address
+    const onChangeAddress = (value, activeFrom) => {
+        // Value Input
+        setDataAddress((prev) => {
+            return { ...prev, ...value }
+        })
+        // Active Button Edit
+        setChangeAddress({ id: value.id, buttonActive: true })
+        // Active From Edit
+        setActive((prev) => {
+            return { ...prev, ...activeFrom }
+        })
+    }
+
     return (
         <>
             <div className="windows-out">
                 <div className="addressbook dimensi-border">
                     <div className="parent_btn">
-                        <button className="capitalize text-sm bg-color-primary py-2 px-5 text-white rounded-lg transition-all duration-300 hover:bg-color-hover-btn 360:mt-[1rem]" onClick={() => activeFrom({ form: true })}>add new address</button>
+                        <button
+                            className="capitalize text-sm bg-color-primary py-2 px-5 text-white rounded-lg transition-all duration-300 hover:bg-color-hover-btn 360:mt-[1rem]"
+                            onClick={() => activeFrom({ form: true })}
+                        >
+                            add new address
+                        </button>
                     </div>
 
                     <ul className="grid gap-5 mt-[1rem]">
@@ -163,11 +187,14 @@ function AddressBook({ onOffScrollBody, loginAkunPelanggan, updateAddress }) {
 
                                 {/* Button */}
                                 <div className="flex gap-3 640:gap-[2rem] mt-[2rem] items-center">
-                                    <button className="btn">change address</button>
+                                    {/* Button Edit Address */}
+                                    <button className="btn" onClick={() => onChangeAddress(data, { form: true })}>change address</button>
+
                                     <div className={data.id === addressUtama.id ? "hidden" : "hidden 414:flex gap-3 640:gap-[2rem]"}>
                                         <button className="btn hidden 768:inline" onClick={() => changeOnPilihAddress(data)}>make it the primary address</button>
                                         <button className="btn" onClick={() => removeAddress(data.id)}>delete</button>
                                     </div>
+
                                     {/* Icon Btn */}
                                     <div className={data.id === addressUtama.id ? "hidden" : "btn-titik"} onClick={() => acitveBtnMobile({ btnMobile: data.id })}><AiOutlineEllipsis /></div>
                                 </div>
@@ -194,7 +221,17 @@ function AddressBook({ onOffScrollBody, loginAkunPelanggan, updateAddress }) {
             </div>
 
             {/* FROM ADD ADDRESS */}
-            {!active.form ? "" : <FromAddress activeFrom={activeFrom} loginAkunPelanggan={loginAkunPelanggan} dataAddress={dataAddress} updateDataAddress={updateDataAddress} putOnAddress={putOnAddress} />}
+            {!active.form
+                ? ""
+                : <FromAddress
+                    activeFrom={activeFrom}
+                    loginAkunPelanggan={loginAkunPelanggan}
+                    dataAddress={dataAddress}
+                    updateDataAddress={updateDataAddress}
+                    putOnAddress={putOnAddress}
+                    changeAddress={changeAddress}
+                    getOnAddress={getOnAddress}
+                />}
 
             {/* Loading */}
             {!active.loading ? "" : <LoadingAddData />}
